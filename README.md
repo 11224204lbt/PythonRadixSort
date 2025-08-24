@@ -140,37 +140,53 @@ print("排序後:", counting_sort(nums))
 
 </pre>
 ![01](https://github.com/11224204lbt/PythonRadixSort/blob/main/Counting%20Sort.png)
-## 歸併排序（Merge Sort）
+## 歸併排序（Merge Sort）原理
 
-遞迴分割序列，再將兩個有序序列合併為一個。
+歸併排序是一種 分治法 (Divide and Conquer) 排序演算法
+主要步驟：
+分割 (Divide)：不斷將序列一分為二，直到每個子序列只剩一個元素（自然有序）
+合併 (Merge)：兩個已排序的子序列合併成一個有序序列
+持續合併，直到所有子序列合成一個完整排序好的序列
+
 <pre>
-arr = [6, 3, 8, 5]
-
 def merge_sort(arr):
     if len(arr) <= 1:
         return arr
 
+    # 分割
     mid = len(arr) // 2
     left = merge_sort(arr[:mid])
     right = merge_sort(arr[mid:])
 
+    # 合併
+    return merge(left, right)
+
+def merge(left, right):
     result = []
     i = j = 0
+
+    # 比較左右子序列，將小的依序放入結果
     while i < len(left) and j < len(right):
-        if left[i] < right[j]:
+        if left[i] <= right[j]:
             result.append(left[i])
             i += 1
         else:
             result.append(right[j])
             j += 1
 
+    # 剩下的元素直接加入
     result.extend(left[i:])
     result.extend(right[j:])
+
     return result
 
-print(merge_sort([6, 3, 8, 5])) 
+# 測試
+nums = [38, 27, 43, 3, 9, 82, 10]
+print("排序前:", nums)
+print("排序後:", merge_sort(nums))
+
 </pre>
-![01](https://github.com/XUPOWEN/Radix-Sort/blob/main/RS5.png)
+![01](https://github.com/11224204lbt/PythonRadixSort/blob/main/Merge%20Sort.png)
 ## 快速排序（Quick Sort）
 
 選擇基準值進行分區，使得左側小於基準，右側大於基準，再對兩側遞迴排序。
