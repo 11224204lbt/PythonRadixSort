@@ -93,27 +93,53 @@ print("排序後:", insertion_sort(nums))
   
 </pre>
 ![01](https://github.com/11224204lbt/PythonRadixSort/blob/main/Insertion%20Sort.png)
-## 計數排序（Counting Sort）
+## 計數排序（Counting Sort）原理
 
-適用於範圍固定的整數。透過統計每個數字出現的次數，重建有序數列。
+計數排序是一種 非比較型排序演算法，特別適合 整數、範圍有限 的資料。
+核心想法：
+找出陣列中的最大值與最小值，確定數字範圍
+建立一個「計數陣列 (count array)」，用來記錄每個數字出現的次數
+累加計數陣列，讓它能表示「小於或等於某數字的元素個數」
+建立結果陣列，根據計數陣列把元素放到正確位置
+
 <pre>
-arr = [4, 2, 2, 8, 3, 3, 1]
-
 def counting_sort(arr):
+    if not arr:
+        return arr
+
+    # 找最大和最小值
     max_val = max(arr)
-    count = [0] * (max_val + 1)
+    min_val = min(arr)
+    range_of_elements = max_val - min_val + 1
 
+    # 計數陣列 (初始化為 0)
+    count = [0] * range_of_elements
+
+    # 輸出陣列
+    output = [0] * len(arr)
+
+    # 計數每個元素出現次數
     for num in arr:
-        count[num] += 1
+        count[num - min_val] += 1
 
-    sorted_arr = []
-    for i in range(len(count)):
-        sorted_arr.extend([i] * count[i])
-    return sorted_arr
+    # 累加計數，讓 count[i] 表示 <= i 的數字數量
+    for i in range(1, len(count)):
+        count[i] += count[i - 1]
 
-print(counting_sort([4, 2, 2, 8, 3, 3, 1])) 
+    # 反向填充輸出陣列 (確保穩定性)
+    for num in reversed(arr):
+        output[count[num - min_val] - 1] = num
+        count[num - min_val] -= 1
+
+    return output
+
+# 測試
+nums = [4, 2, 2, 8, 3, 3, 1]
+print("排序前:", nums)
+print("排序後:", counting_sort(nums))
+
 </pre>
-![01](https://github.com/XUPOWEN/Radix-Sort/blob/main/RS4.png)
+![01](https://github.com/11224204lbt/PythonRadixSort/blob/main/Counting%20Sort.png)
 ## 歸併排序（Merge Sort）
 
 遞迴分割序列，再將兩個有序序列合併為一個。
