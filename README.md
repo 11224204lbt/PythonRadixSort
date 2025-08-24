@@ -8,10 +8,17 @@
 
 基數排序的方式可以採用LSD（Least significant digital）或MSD（Most significant digital），LSD的排序方式由鍵值的最右邊開始，而MSD則相反，由鍵值的最左邊開始。
 
+## 圖例說明
+![01](https://github.com/11224204lbt/PythonRadixSort/blob/main/pic1.jpg)
 
-## 選擇排序（Selection Sort）
+### 選擇排序（Selection Sort）原理
 
-每輪從未排序部分選出最小值，與當前索引交換。
+從未排序的序列中，找到最小值（或最大值）
+把這個最小值和「目前起始位置」的元素交換
+然後縮小範圍，對剩下的序列重複步驟 1、2
+持續進行，直到整個序列排序完成。
+
+
 <pre>
 arr = [29, 10, 14, 37, 13]
 
@@ -27,7 +34,6 @@ def selection_sort(arr):
 
 print(selection_sort([29, 10, 14, 37, 13])) 
 </pre>
-![01](https://github.com/XUPOWEN/Radix-Sort/blob/main/RS1.png)
 ## 冒泡排序（Bubble Sort）
 
 每輪從頭開始相鄰比較，大元素逐步“冒泡”至末端。
