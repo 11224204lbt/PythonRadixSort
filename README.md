@@ -1,4 +1,4 @@
-# 期末題目五: 【Python 算法零基础 4.排序 ⑧ 基数排序】
+# 期末題目五: 【Python 算法零基礎 4.排序 ⑧ 基數排序】
 ## 11224204 林柏廷
 
 ### 基数排序簡述
@@ -187,26 +187,34 @@ print("排序後:", merge_sort(nums))
 
 </pre>
 ![01](https://github.com/11224204lbt/PythonRadixSort/blob/main/Merge%20Sort.png)
-## 快速排序（Quick Sort）
+## 快速排序（Quick Sort）原理
 
-選擇基準值進行分區，使得左側小於基準，右側大於基準，再對兩側遞迴排序。
+快速排序是一種 分治法 (Divide and Conquer) 排序演算法
+主要概念：
+選擇基準 (Pivot)：從序列中選一個元素作為基準
+分割 (Partition)：將序列分成兩部分：
+左邊元素 ≤ 基準
+右邊元素 > 基準
+遞迴排序：對左、右子序列重複以上步驟，直到子序列長度 ≤ 1
+最終得到排序好的序列
+
 <pre>
-arr = [9, 3, 7, 6, 2]
-
 def quick_sort(arr):
     if len(arr) <= 1:
         return arr
+    else:
+        pivot = arr[0]  # 選第一個元素作為基準
+        left = [x for x in arr[1:] if x <= pivot]  # 小於等於基準
+        right = [x for x in arr[1:] if x > pivot]  # 大於基準
+        return quick_sort(left) + [pivot] + quick_sort(right)
 
-    pivot = arr[0]
-    less = [x for x in arr[1:] if x <= pivot]
-    greater = [x for x in arr[1:] if x > pivot]
-
-    return quick_sort(less) + [pivot] + quick_sort(greater)
-
-print(quick_sort([9, 3, 7, 6, 2])) 
+# 測試
+nums = [10, 7, 8, 9, 1, 5]
+print("排序前:", nums)
+print("排序後:", quick_sort(nums))
 
 </pre>
-![01](https://github.com/XUPOWEN/Radix-Sort/blob/main/RS6.png)
+![01](https://github.com/11224204lbt/PythonRadixSort/blob/main/Quick%20Sort.png)
 ## 桶排序（Bucket Sort）
 
 將元素分配到不同桶中，分別排序後合併。
