@@ -16,7 +16,7 @@
 從未排序的序列中，找到最小值（或最大值）
 把這個最小值和「目前起始位置」的元素交換
 然後縮小範圍，對剩下的序列重複步驟 1、2
-持續進行，直到整個序列排序完成。
+持續進行，直到整個序列排序完成
 
 <pre>
 def selection_sort(arr):
@@ -36,22 +36,18 @@ nums = [64, 25, 12, 22, 11]
 print("排序前:", nums)
 print("排序後:", selection_sort(nums))
 </pre>
-![01](https://github.com/XUPOWEN/Radix-Sort/blob/main/RS2.png)
-## 冒泡排序（Bubble Sort）
+![01](https://github.com/11224204lbt/PythonRadixSort/blob/main/Selection%20Sort.png)
+## 冒泡排序（Bubble Sort）原理
 
-每輪從頭開始相鄰比較，大元素逐步“冒泡”至末端。
+比較 相鄰的兩個元素，如果順序錯誤就交換
+每一輪比較之後，最大（或最小）的元素會被“冒泡”到最後面
+下一輪就少比較一次（因為最後的元素已經就定位）
+重複進行，直到整個序列完成排序
+每輪從頭開始相鄰比較，大元素逐步“冒泡”至末端
+
 <pre>
-arr = [5, 3, 8, 4, 2]
 
-def bubble_sort(arr):
-    n = len(arr)
-    for i in range(n):
-        for j in range(n - i - 1):
-            if arr[j] > arr[j+1]:
-                arr[j], arr[j+1] = arr[j+1], arr[j]
-    return arr
 
-print(bubble_sort([5, 3, 8, 4, 2])) 
 </pre>
 ![01](https://github.com/XUPOWEN/Radix-Sort/blob/main/RS2.png)
 ## 插入排序（Insertion Sort）
