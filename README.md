@@ -65,25 +65,34 @@ print("排序後:", bubble_sort(nums))
 
 </pre>
 ![01](https://github.com/11224204lbt/PythonRadixSort/blob/main/Bubble%20Sort.png)
-## 插入排序（Insertion Sort）
+## 插入排序（Insertion Sort）原理
 
-將未排序元素插入已排序序列中正確的位置。
+插入排序的想法就像「整理撲克牌」：
+從第二個元素開始，拿起來，往前跟已排序好的部分比較
+如果比前面的元素小，就把前面的元素往後移
+直到找到正確位置，把該元素插入
+重複這個過程，直到所有元素都放到正確位置
+
 <pre>
-arr = [7, 4, 5, 2]
-
 def insertion_sort(arr):
     for i in range(1, len(arr)):
-        current = arr[i]
+        key = arr[i]   # 要插入的元素
         j = i - 1
-        while j >= 0 and arr[j] > current:
-            arr[j+1] = arr[j]
+        # 往前比較，若比 key 大就往後移
+        while j >= 0 and arr[j] > key:
+            arr[j + 1] = arr[j]
             j -= 1
-        arr[j+1] = current
+        # 插入 key 到正確位置
+        arr[j + 1] = key
     return arr
 
-print(insertion_sort([7, 4, 5, 2]))  
+# 測試
+nums = [12, 11, 13, 5, 6]
+print("排序前:", nums)
+print("排序後:", insertion_sort(nums))
+  
 </pre>
-![01](https://github.com/XUPOWEN/Radix-Sort/blob/main/RS3.png)
+![01](https://github.com/11224204lbt/PythonRadixSort/blob/main/Insertion%20Sort.png)
 ## 計數排序（Counting Sort）
 
 適用於範圍固定的整數。透過統計每個數字出現的次數，重建有序數列。
