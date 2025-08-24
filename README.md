@@ -46,10 +46,25 @@ print("排序後:", selection_sort(nums))
 每輪從頭開始相鄰比較，大元素逐步“冒泡”至末端
 
 <pre>
+def bubble_sort(arr):
+    n = len(arr)
+    for i in range(n - 1):  
+        swapped = False   # 標記這一輪有沒有交換
+        for j in range(n - 1 - i):  # 每一輪把最大值冒到最後
+            if arr[j] > arr[j + 1]:  # 如果前面比後面大，就交換
+                arr[j], arr[j + 1] = arr[j + 1], arr[j]
+                swapped = True
+        if not swapped:  # 如果這一輪完全沒交換，代表已經排好
+            break
+    return arr
 
+# 測試
+nums = [5, 1, 4, 2, 8, 3]
+print("排序前:", nums)
+print("排序後:", bubble_sort(nums))
 
 </pre>
-![01](https://github.com/XUPOWEN/Radix-Sort/blob/main/RS2.png)
+![01](https://github.com/11224204lbt/PythonRadixSort/blob/main/Bubble%20Sort.png)
 ## 插入排序（Insertion Sort）
 
 將未排序元素插入已排序序列中正確的位置。
